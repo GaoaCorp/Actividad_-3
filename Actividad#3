@@ -1,0 +1,62 @@
+// //Inicio
+// │
+// ├─ Generar vector aleatorio sin números repetidos
+// │ └─ Método: crear()
+// │
+// ├─ Recorrer el vector y clasificar cada número
+// │ ├─ Si es primo → Agregar a vector primos
+// │ ├─ Si es compuesto → Agregar a vector compuestos
+// │ └─ Método: esPrimo() para determinar si un número es primo │
+// ├─ Método clasificarNumeros()
+// │ ├─ Recorre el vector
+// │ ├─ Llama a esPrimo() para verificar el número
+// │ ├─ Llama a agregar() para asignarlo a primos o compuestos │
+// Fin
+
+
+import java.util.Random; public class Ejemplo {
+public static void main(String[] args) { int v[]=new int[5];
+crear(v);
+int z[]=new int[3];
+crear(z);
+ 
+int primos[] = new int[v.length + z.length];
+int compuestos[] = new int[v.length + z.length]; clasificarNumeros(v, primos, compuestos); clasificarNumeros(z, primos, compuestos);
+}
+private static void crear(int vector[]) { int n = vector.length;
+if(n<=0)
+System.out.println("Error"); rellenar(vector);
+for (int i = 0; i < n; i++) {
+vector[i] = encuentreNumero(vector); }
+}
+private static void rellenar(int z[]) {
+for (int i = 0; i < z.length; i++) { z[i] = -1;
+} }
+private static int encuentreNumero(int v[]) { int n = v.length;
+Random r = new Random();
+boolean repite = true;
+intnum=0; while (repite) {
+num = r.nextInt(n);
+repite = verifique(num, v);
+
+}
+return num; }
+private static boolean verifique(int num, int arreglo[]) { for (int dato : arreglo) {
+if (dato == num) return true;
+}
+return false; }
+private static boolean esPrimo(int num) { if (num < 2) return false;
+for (int i = 2; i * i <= num; i++) {
+if (num % i == 0) return false; }
+return true; }
+private static void agregar(int vector[], int num) { for (int i = 0; i < vector.length; i++) {
+if (vector[i] == 0) { vector[i] = num; break;
+} }
+}
+private static void clasificarNumeros(int vector[], int primos[], int compuestos[]) {
+for (int num : vector) { if (esPrimo(num)) {
+
+agregar(primos, num); }else{
+agregar(compuestos, num); }
+} }
+}
